@@ -1,0 +1,21 @@
+request:
+  method: POST
+  url: /v1/mission
+  body:
+    name: Go and find the Soul Stone!!!!
+    planet: Vomir
+    keeper: Red skull
+    stoneId: 6
+  headers:
+    Content-type: application/json;charset=UTF-8
+response:
+  status: 201
+  body:
+   id: 1
+   name: Go and find the Soul Stone!!!!
+   planet: Vomir
+   keeper: Red skull
+   stoneId: 6
+  headers:
+    Content-type: application/json;charset=UTF-8
+  
