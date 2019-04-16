@@ -1,7 +1,5 @@
 package fr.devoxx.spring.mission.utils;
 
-import java.io.InputStream;
-
 public class NotFoundException extends RuntimeException {
 
 	/**

@@ -58,6 +58,15 @@
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-consul-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 		<!-- java 11 IllegalState Parsed JSON -->
 		<dependency>
@@ -69,6 +78,7 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
