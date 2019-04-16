@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import fr.devoxx.spring.mission.dao.MissionRepository;
 import fr.devoxx.spring.mission.model.Mission;
 import fr.devoxx.spring.mission.model.Stone;
@@ -21,6 +23,7 @@ public class MissionService {
 	
 	@Autowired RestTemplate restTemplate;
 	
+	@HystrixCommand(fallbackMethod="reliable")
 	public Mission createNewMission(Mission mission) {
 		if (checkIftheirExistingStone(mission.getStoneId()))
 			return missionRepository.save(mission);
@@ -28,12 +31,11 @@ public class MissionService {
 		throw new NotFoundException(mission.getStoneId());
 	}
 	
-	private Boolean checkIftheirExistingStone(Integer stoneId) {
+	
+	public Boolean checkIftheirExistingStone(Integer stoneId) {
 
 		URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/v1/stone/{id}")
-				.buildAndExpand(stoneId.toString()).toUri();
-
-		System.out.println(uri);
+				.build(stoneId.toString());
 	
 		ResponseEntity<Stone> stone=restTemplate.getForEntity(uri, Stone.class);
 
@@ -43,5 +45,10 @@ public class MissionService {
 				return true;
 		}
 		return false;
+	}
+
+	
+	private Mission reliable(Mission mission) {		
+		return new Mission();
 	}
 }

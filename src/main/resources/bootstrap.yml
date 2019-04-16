@@ -7,7 +7,7 @@ spring:
     
       discovery:
         instance-id: ${spring.application.name}:${random.value}
-        tags:        - urlprefix-/v1//mission
+        tags:        - urlprefix-/v1/mission
           
   application:
     name: mission-service
